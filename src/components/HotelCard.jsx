@@ -4,16 +4,18 @@ import PropTypes from 'prop-types';
 export default function HotelCard({
   name, city, country, imageUrl,
 }) {
-  <div>
-    <a href="#section">
-      <img src={imageUrl} alt="hotel_picture" />
-      <p>{name}</p>
-      <p>
-        {city}
-        {country}
-      </p>
-    </a>
-  </div>;
+  return (
+    <div>
+      <a href="#section">
+        <img src={imageUrl} alt="hotel_picture" />
+        <p>{name}</p>
+        <p>
+          {city}
+          {country}
+        </p>
+      </a>
+    </div>
+  );
 }
 
 HotelCard.propTypes = {

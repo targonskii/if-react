@@ -1,38 +1,116 @@
-.App {
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/roboto-v27-latin-regular.eot");
+  /* IE9 Compat Modes */
+  src: local(""),
+    url("./fonts/roboto-v27-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/roboto-v27-latin-regular.woff2") format("woff2"),
+    url("./fonts/roboto-v27-latin-regular.woff") format("woff"),
+    url("./fonts/roboto-v27-latin-regular.ttf") format("truetype"),
+    url("./fonts/roboto-v27-latin-regular.svg#Roboto") format("svg");
+  /* Legacy iOS */
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.homes {
+  padding: 0 105px;
+  background: #eaf0f9;
+}
+.homes__h1 {
   text-align: center;
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 47px;
+  color: #383838;
+  padding-top: 120px;
+  padding-bottom: 105px;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.homes__slider {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-around;
+  padding-bottom: 120px;
+}
+.homes__slider img {
+  max-width: 100%;
+  height: auto;
+}
+.homes__slider a {
+  text-decoration: none;
+}
+.homes__slider div:last-child {
+  position: relative;
+}
+.homes__slider div:last-child:after {
+  content: url(./images/arrow.svg);
+  position: absolute;
+  top: 125px;
+  left: 270px;
+}
+.homes__slider p {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  color: #3077c6;
+  padding-top: 24px;
+}
+.homes__slider p:last-child {
+  color: #bfbfbf;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 859px) {
+  .homes {
+    padding: 0;
   }
-  to {
-    transform: rotate(360deg);
+  .homes__h1 {
+    text-align: center;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 33px;
+    color: #383838;
+    padding-top: 40px;
+    padding-bottom: 32px;
+  }
+  .homes__slider {
+    justify-content: space-evenly;
+    padding-bottom: 40px;
+  }
+  .homes__slider div {
+    max-width: 156px;
+  }
+  .homes__slider div:nth-child(2) {
+    position: relative;
+  }
+  .homes__slider div:nth-child(2)::after {
+    content: url(./images/arrow_mobile.svg);
+    position: absolute;
+    top: 60px;
+    left: 135px;
+  }
+  .homes__slider div:nth-child(3) {
+    display: none;
+  }
+  .homes__slider div:nth-child(4) {
+    display: none;
+  }
+  .homes__slider p {
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    padding-top: 6px;
+  }
+  .homes__slider p:last-child {
+    padding-top: 4px;
   }
 }
