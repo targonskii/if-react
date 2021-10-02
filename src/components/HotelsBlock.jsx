@@ -4,9 +4,10 @@ import HotelCard from './HotelCard';
 
 export default function HotelBlocks(props) {
   const { data } = props;
+  const hotels = [...data].slice(0, 4);
   return (
     <div className="homes__slider">
-      {data.slice(0, 4).forEach((item) => (
+      {hotels.map((item) => (
         <HotelCard
           name={item.name}
           city={item.city}

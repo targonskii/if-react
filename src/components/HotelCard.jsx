@@ -11,6 +11,8 @@ export default function HotelCard({
         <p>{name}</p>
         <p>
           {city}
+          ,
+          <br />
           {country}
         </p>
       </a>
