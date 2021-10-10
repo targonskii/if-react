@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import HotelCard from './HotelCard';
+import HotelCard from '../hotelCards';
 
 export default function HotelBlocks(props) {
   const { data } = props;

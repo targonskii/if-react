@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
-import HotelBlocks from './components/HotelsBlock';
-import data from './components/data';
+import Top from './components/top-section';
+import AvailableHotels from './components/available';
+import HomesHotels from './components/homes';
 
 function App() {
   return (
-    <section className="homes">
-      <h1 className="homes__h1">Homes guests loves</h1>
-      <HotelBlocks data={data} />
-    </section>
+    <>
+      <Top />
+      <AvailableHotels />
+      <HomesHotels />
+    </>
   );
 }
 
