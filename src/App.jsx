@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import Top from './components/top-section';
-import AvailableHotels from './components/available';
-import HomesHotels from './components/homes';
+import Top from './components/Top-section';
+import AvailableHotels from './components/Available';
+import HomesHotels from './components/Homes';
 
 function App() {
   return (

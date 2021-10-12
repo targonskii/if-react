@@ -1,6 +1,6 @@
 import React from 'react';
 import data from '../data';
-import HotelBlocks from '../hotelBlocks';
+import HotelBlocks from '../HotelBlocks';
 
 function HomesHotels() {
   return (
