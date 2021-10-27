@@ -1,12 +1,36 @@
 import React, { useState } from 'react';
+
 import Logo from '../../images/logo_triphouse_blue.svg';
 import GooglePlay from '../../images/google-play.svg';
 import AppleStore from '../../images/app_store.svg';
-import Button from '../Button';
-import AvailableHotels from '../Available';
 
-function Top() {
+import data from '../../constants/data';
+
+import Button from '../Button';
+
+function Top({ setHotels }) {
   const [text, setText] = useState('');
+  // const [hotels, setHotels] = useState ([]);
+
+  const handleInput = (e) => {
+    setText(e.target.value);
+    // console.log("text: ", text)
+  };
+
+  const handleClick = () => {
+    data.map((item) => {
+      const hotelsArray = [];
+      const city = item.city.toLowerCase();
+      const country = item.country.toLowerCase();
+      const name = item.name.toLowerCase();
+      const textSearch = text.toLowerCase();
+
+      if (city.includes(textSearch) || country.includes(textSearch) || name.includes(textSearch)) {
+        hotelsArray.push(item);
+      }
+      return setHotels(hotelsArray);
+    });
+  };
 
   return (
     <header className="header">
@@ -30,36 +54,34 @@ function Top() {
           </p>
           <form action="">
             <div className="header__destination">
-              <p>
-                <label htmlFor="search">Your destination or hotel name</label>
-              </p>
-              <input
-                id="search"
-                value={text}
-                onChange={(e) => {
-                  setText(e.target.value);
-                }}
-                placeholder="New York"
-              />
+              <label htmlFor="search">
+                Your destination or hotel name
+                <input
+                  id="search"
+                  value={text}
+                  onChange={handleInput}
+                  placeholder="New York"
+                />
+              </label>
             </div>
             <div className="header__date">
               <div className="header__in">
-                <p>
-                  <label htmlFor="inId">Check-in - </label>
-                </p>
-                <input type="date" id="inId" />
+                <label htmlFor="inId">
+                  Check-in -
+                  <input type="date" id="inId" />
+                </label>
               </div>
               <div className="header__out">
-                <p>
-                  <label htmlFor="outId">Check-out</label>
-                </p>
-                <input type="date" id="outId" />
+                <label htmlFor="outId">
+                  Check-out
+                  <input type="date" id="outId" />
+                </label>
               </div>
             </div>
             <div className="header__people">
               <input type="number" placeholder="2 Adults — 0 Children — 1 Room" />
             </div>
-            <Button onClick={AvailableHotels} />
+            <Button text="Search" handleClick={handleClick} />
           </form>
         </div>
         <div className="header__download">

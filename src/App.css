@@ -98,6 +98,7 @@ header {
   padding-left: 20px;
 }
 .header__destination input {
+  margin-top: 24px;
   border-radius: 8px 0px 0px 8px;
   border-right: none;
 }
@@ -112,6 +113,7 @@ header {
   padding-bottom: 24px;
 }
 .header__date input {
+  margin-top: 24px;
   border-left: none;
   border-right: none;
 }

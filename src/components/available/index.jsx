@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import data from '../data';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import HotelBlocks from '../HotelBlocks';
 
-function AvailableHotels() {
-  const [text] = useState('');
-  const filteredData = data.filter((item) => item.name.indexOf(text));
-
+function AvailableHotels({ hotels }) {
   return (
     <section className="homes">
-      <h1 className="homes__h1">Alailable hotels</h1>
-      <HotelBlocks data={filteredData} />
+      <h1 className="homes__h1">Available hotels</h1>
+      <HotelBlocks data={hotels} />
     </section>
   );
 }
 
 export default AvailableHotels;
+
+AvailableHotels.propTypes = {
+  hotels: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

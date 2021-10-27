@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function Button() {
+export default function Button({ text, handleClick }) {
   return (
-    <button type="button">Search</button>
+    <button type="button" onClick={handleClick}>{text}</button>
   );
 }
