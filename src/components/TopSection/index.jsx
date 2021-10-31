@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Logo from '../../images/logo_triphouse_blue.svg';
 import GooglePlay from '../../images/google-play.svg';
@@ -8,27 +9,24 @@ import data from '../../constants/data';
 
 import Button from '../Button';
 
-function Top({ setHotels }) {
+function Top({ searchData }) {
   const [text, setText] = useState('');
-  // const [hotels, setHotels] = useState ([]);
 
   const handleInput = (e) => {
     setText(e.target.value);
-    // console.log("text: ", text)
   };
 
   const handleClick = () => {
-    data.map((item) => {
-      const hotelsArray = [];
+    const hotelsArray = data.filter((item) => {
       const city = item.city.toLowerCase();
       const country = item.country.toLowerCase();
       const name = item.name.toLowerCase();
       const textSearch = text.toLowerCase();
 
       if (city.includes(textSearch) || country.includes(textSearch) || name.includes(textSearch)) {
-        hotelsArray.push(item);
+        return item;
       }
-      return setHotels(hotelsArray);
+      return searchData(hotelsArray);
     });
   };
 
@@ -94,3 +92,7 @@ function Top({ setHotels }) {
 }
 
 export default Top;
+
+Top.propTypes = {
+  searchData: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

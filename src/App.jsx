@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import './App.css';
 
@@ -7,7 +7,7 @@ import Top from './components/TopSection';
 import AvailableHotels from './components/Available';
 import HomesHotels from './components/Homes';
 
-import data from './constants/data';
+// import data from './constants/data';
 
 function App() {
   const [hotels, setHotels] = useState([]);
@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Top searchData={setHotels} />
-      {hotels.length > 1 ?? <AvailableHotels hotels={[...data].slice(0, 4)} />}
+      {hotels?.length >= 1 && <AvailableHotels hotels={hotels} />}
       <HomesHotels />
     </>
   );
@@ -23,6 +23,6 @@ function App() {
 
 export default App;
 
-App.propTypes = {
-  setHotels: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+// App.propTypes = {
+//   setHotels: PropTypes.arrayOf(PropTypes.object).isRequired,
+// };
