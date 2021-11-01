@@ -9,7 +9,7 @@ import data from '../../constants/data';
 
 import Button from '../Button';
 
-function Top({ searchData }) {
+function Top({ setHotels }) {
   const [text, setText] = useState('');
 
   const handleInput = (e) => {
@@ -24,10 +24,11 @@ function Top({ searchData }) {
       const textSearch = text.toLowerCase();
 
       if (city.includes(textSearch) || country.includes(textSearch) || name.includes(textSearch)) {
-        return item;
+        return true;
       }
-      return searchData(hotelsArray);
+      return false;
     });
+    setHotels(hotelsArray);
   };
 
   return (
@@ -94,5 +95,5 @@ function Top({ searchData }) {
 export default Top;
 
 Top.propTypes = {
-  searchData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setHotels: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
