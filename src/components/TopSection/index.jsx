@@ -7,7 +7,7 @@ import AppleStore from '../../images/app_store.svg';
 
 import data from '../../constants/data';
 
-import Button from '../Button';
+import Button from '../Button/Index';
 
 function Top({ setHotels }) {
   const [text, setText] = useState('');
@@ -95,5 +95,5 @@ function Top({ setHotels }) {
 export default Top;
 
 Top.propTypes = {
-  setHotels: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setHotels: PropTypes.func.isRequired,
 };
