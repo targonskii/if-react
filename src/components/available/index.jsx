@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import HotelBlocks from '../HotelBlocks/Index';
+import HotelBlocks from '../HotelBlocks';
 
 function AvailableHotels({ hotels }) {
   return (

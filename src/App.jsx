@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import './App.css';
 
-import Top from './components/TopSection/Index';
-import AvailableHotels from './components/Available/Index';
-import HomesHotels from './components/Homes/Index';
+import Top from './components/TopSection';
+import AvailableHotels from './components/Available';
+import HomesHotels from './components/Homes';
 
 function App() {
   const [hotels, setHotels] = useState([]);

@@ -7,7 +7,7 @@ import AppleStore from '../../images/app_store.svg';
 
 import data from '../../constants/data';
 
-import Button from '../Button/Index';
+import Button from '../Button';
 
 function Top({ setHotels }) {
   const [text, setText] = useState('');

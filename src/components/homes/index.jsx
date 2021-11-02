@@ -4,7 +4,7 @@ import React from 'react';
 import data from '../../constants/data';
 
 // components
-import HotelBlocks from '../HotelBlocks/Index';
+import HotelBlocks from '../HotelBlocks';
 
 // styles
 
