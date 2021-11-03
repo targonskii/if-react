@@ -34,7 +34,7 @@ module.exports = {
         use: ['file-loader'],
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
         use: [{
           loader: 'file-loader',
           options: {
@@ -47,7 +47,7 @@ module.exports = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: './public/index.html',
+      template: './src/index.html',
     }),
   ],
 };

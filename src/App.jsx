@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import './App.css';
-import HotelBlocks from './components/HotelsBlock';
-import data from './components/data';
+
+import Top from './components/TopSection';
+import AvailableHotels from './components/Available';
+import HomesHotels from './components/Homes';
 
 function App() {
+  const [hotels, setHotels] = useState([]);
+
   return (
-    <section className="homes">
-      <h1 className="homes__h1">Homes guests loves</h1>
-      <HotelBlocks data={data} />
-    </section>
+    <>
+      <Top setHotels={setHotels} />
+      {hotels?.length >= 1 && <AvailableHotels hotels={hotels} />}
+      <HomesHotels />
+    </>
   );
 }
 

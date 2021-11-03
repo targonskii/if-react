@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import HotelCard from './HotelCard';
+import HotelCard from '../HotelCards';
 
 export default function HotelBlocks(props) {
   const { data } = props;
   const hotels = [...data].slice(0, 4);
+
   return (
     <div className="homes__slider">
       {hotels.map((item) => (
