@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import HotelCard from '../HotelCards';
+import HotelCard from '../HotelCards/index';
 
-export default function HotelBlocks(props) {
-  const { data } = props;
-  const hotels = [...data].slice(0, 4);
+export default function HotelBlocks({ hotels }) {
+  // const { hotels } = props;
+  // const hotels = [...data];
 
   return (
     <div className="homes__slider">
-      {hotels.map((item) => (
+      {hotels.slice(0, 4).map((item) => (
         <HotelCard
           name={item.name}
           city={item.city}
@@ -22,5 +22,5 @@ export default function HotelBlocks(props) {
 }
 
 HotelBlocks.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  hotels: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
