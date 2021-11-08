@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import HotelCard from '../HotelCards/index';
 
 export default function HotelBlocks({ hotels }) {
-  // const { hotels } = props;
-  // const hotels = [...data];
-
   return (
     <div className="homes__slider">
       {hotels.slice(0, 4).map((item) => (

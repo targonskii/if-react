@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// components
 import HotelBlocks from '../HotelBlocks';
-
-// styles
 
 const HomesHotels = ({ hotels }) => (
   <section className="homes">
     <h1 className="homes__h1">Homes guests loves</h1>
-    <HotelBlocks data={hotels} />
+    <HotelBlocks hotels={hotels} />
   </section>
 );
 

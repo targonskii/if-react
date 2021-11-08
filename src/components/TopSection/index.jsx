@@ -5,11 +5,9 @@ import Logo from '../../images/logo_triphouse_blue.svg';
 import GooglePlay from '../../images/google-play.svg';
 import AppleStore from '../../images/app_store.svg';
 
-import data from '../../constants/data';
-
 import Button from '../Button';
 
-function Top({ setHotels }) {
+function Top({ availableHotels, setAvailable }) {
   const [text, setText] = useState('');
 
   const handleInput = (e) => {
@@ -17,7 +15,7 @@ function Top({ setHotels }) {
   };
 
   const handleClick = () => {
-    const hotelsArray = data.filter((item) => {
+    const hotelsArray = availableHotels.filter((item) => {
       const city = item.city.toLowerCase();
       const country = item.country.toLowerCase();
       const name = item.name.toLowerCase();
@@ -28,7 +26,7 @@ function Top({ setHotels }) {
       }
       return false;
     });
-    setHotels(hotelsArray);
+    setAvailable(hotelsArray);
   };
 
   return (
@@ -95,5 +93,6 @@ function Top({ setHotels }) {
 export default Top;
 
 Top.propTypes = {
-  setHotels: PropTypes.func.isRequired,
+  availableHotels: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setAvailable: PropTypes.func.isRequired,
 };
