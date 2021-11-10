@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <Top setAvailable={setAvailable} />
-      {hotels?.length >= 1 && <AvailableHotels availableHotels={availableHotels} />}
+      {availableHotels?.length >= 1 && <AvailableHotels availableHotels={availableHotels} />}
       <HomesHotels hotels={hotels} />
     </>
   );
