@@ -7,7 +7,7 @@ import AppleStore from '../../images/app_store.svg';
 
 import Button from '../Button';
 
-function Top({ availableHotels, setAvailable }) {
+function Top({ setAvailable }) {
   const [text, setText] = useState('');
 
   const handleInput = (e) => {
@@ -15,18 +15,13 @@ function Top({ availableHotels, setAvailable }) {
   };
 
   const handleClick = () => {
-    const hotelsArray = availableHotels.filter((item) => {
-      const city = item.city.toLowerCase();
-      const country = item.country.toLowerCase();
-      const name = item.name.toLowerCase();
-      const textSearch = text.toLowerCase();
-
-      if (city.includes(textSearch) || country.includes(textSearch) || name.includes(textSearch)) {
-        return true;
-      }
-      return false;
-    });
-    setAvailable(hotelsArray);
+    const url = new URL('https://fe-student-api.herokuapp.com/api/hotels');
+    url.searchParams.set('search', `${text}`);
+    fetch(`${url}`)
+      .then((resonce) => resonce.json())
+      .then((json) => {
+        setAvailable(json);
+      });
   };
 
   return (
@@ -93,6 +88,6 @@ function Top({ availableHotels, setAvailable }) {
 export default Top;
 
 Top.propTypes = {
-  availableHotels: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // availableHotels: PropTypes.arrayOf(PropTypes.object).isRequired,
   setAvailable: PropTypes.func.isRequired,
 };
