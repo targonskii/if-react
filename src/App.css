@@ -499,8 +499,9 @@ header {
   padding-bottom: 120px;
 }
 .homes__slider img {
-  max-width: 100%;
-  height: auto;
+  width: 296px;
+  height: 296px;
+  object-fit: cover;
 }
 .homes__slider a {
   text-decoration: none;
