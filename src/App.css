@@ -130,7 +130,7 @@ header {
   color: #cecece !important;
 }
 .header__people_age {
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 .header__people_age div {
   display: block;
@@ -138,6 +138,8 @@ header {
 .header__people_age span {
   padding-top: 16px;
   font-size: 12px;
+  width: auto;
+  text-align: left;
 }
 .header__people_age select {
   margin-top: 12px;
