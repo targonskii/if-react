@@ -1,34 +1,43 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import DatePicker from 'react-datepicker';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import DatePicker from "react-datepicker";
 
-import Logo from '../../images/logo_triphouse_blue.svg';
-import GooglePlay from '../../images/google-play.svg';
-import AppleStore from '../../images/app_store.svg';
+import Logo from "../../images/logo_triphouse_blue.svg";
+import GooglePlay from "../../images/google-play.svg";
+import AppleStore from "../../images/app_store.svg";
 
-import Filter from '../Filter';
-import Button from '../Button';
+import Filter from "../Filter";
+import Button from "../Button";
 
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datepicker/dist/react-datepicker.css";
 
 function Top({ setAvailable }) {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [dateRange, setDateRange] = useState([new Date(), new Date()]);
   const [startDate, endDate] = dateRange;
   const [filterData, setFilterData] = useState({
     adults: 2,
     children: 0,
     rooms: 1,
-  })
-  const [visibleFilter, setVisibleFilter] = useState(false)
+  });
+  const [childAge, setChildAge] = useState([]);
+  const [visibleFilter, setVisibleFilter] = useState(false);
+  const [stateButtons, setStateButtons] = useState({
+    minusAdults: false,
+    plusAdults: false,
+    minusChild: true,
+    plusChild: false,
+    minusRooms: true,
+    plusRooms: false,
+  });
 
   const handleInput = (e) => {
     setText(e.target.value);
   };
 
   const handleClick = () => {
-    const url = new URL('https://fe-student-api.herokuapp.com/api/hotels');
-    url.searchParams.set('search', `${text}`);
+    const url = new URL("https://fe-student-api.herokuapp.com/api/hotels");
+    url.searchParams.set("search", `${text}`);
     fetch(`${url}`)
       .then((resonce) => resonce.json())
       .then((json) => {
@@ -37,12 +46,12 @@ function Top({ setAvailable }) {
   };
 
   const filterInput = (e) => {
-    setFilterData(e.target.value)
+    setFilterData(e.target.value);
   };
 
   const filterClick = () => {
-    setVisibleFilter((visibleFilter) => !visibleFilter)
-  }
+    setVisibleFilter((visibleFilter) => !visibleFilter);
+  };
 
   return (
     <header className="header">
@@ -52,10 +61,20 @@ function Top({ setAvailable }) {
             <img src={Logo} alt="logo" />
           </a>
           <ul>
-            <li className="header__stays"><a href="#stays">Stays</a></li>
-            <li className="header__attractions"><a href="#attractions">Attractions</a></li>
-            <li><div className="header__night" /></li>
-            <li><a href="#account" aria-label="account"><div className="header__account" /></a></li>
+            <li className="header__stays">
+              <a href="#stays">Stays</a>
+            </li>
+            <li className="header__attractions">
+              <a href="#attractions">Attractions</a>
+            </li>
+            <li>
+              <div className="header__night" />
+            </li>
+            <li>
+              <a href="#account" aria-label="account">
+                <div className="header__account" />
+              </a>
+            </li>
           </ul>
         </div>
         <div className="header__search">
@@ -90,16 +109,19 @@ function Top({ setAvailable }) {
               />
             </div>
             <div className="header__people">
-              <input 
+              <input
                 value={filterData}
                 onClick={filterClick}
                 onChange={filterInput}
-                type="number" 
+                type="number"
                 placeholder={
-                  `${filterData.adults}`+" Adults — "+
-                  `${filterData.children}`+" Children — "+
-                  `${filterData.rooms}`+" Room"
-                } 
+                  `${filterData.adults}` +
+                  " Adults — " +
+                  `${filterData.children}` +
+                  " Children — " +
+                  `${filterData.rooms}` +
+                  " Room"
+                }
               />
             </div>
             <Button
@@ -108,11 +130,24 @@ function Top({ setAvailable }) {
               handleClick={handleClick}
             />
           </form>
-          {visibleFilter && <Filter filterData={filterData} setFilterData={setFilterData} />}
+          {visibleFilter && (
+            <Filter
+              filterData={filterData}
+              setFilterData={setFilterData}
+              childAge={childAge}
+              setChildAge={setChildAge}
+              stateButtons={stateButtons}
+              setStateButtons={setStateButtons}
+            />
+          )}
         </div>
         <div className="header__download">
-          <a href="#google"><img src={GooglePlay} alt="google-play" /></a>
-          <a href="#apple"><img src={AppleStore} alt="app_store" /></a>
+          <a href="#google">
+            <img src={GooglePlay} alt="google-play" />
+          </a>
+          <a href="#apple">
+            <img src={AppleStore} alt="app_store" />
+          </a>
         </div>
       </div>
     </header>

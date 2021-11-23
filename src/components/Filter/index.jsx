@@ -3,7 +3,14 @@ import PropTypes from "prop-types";
 
 import Selector from "../Selector";
 
-function Filter({ filterData, setFilterData }) {
+function Filter({
+  filterData,
+  setFilterData,
+  childAge,
+  setChildAge,
+  stateButtons,
+  setStateButtons,
+}) {
   const filterDefault = {
     adults: {
       min: 1,
@@ -23,17 +30,6 @@ function Filter({ filterData, setFilterData }) {
   const [children, setChildren] = useState(filterData.children);
   const [rooms, setRooms] = useState(filterData.rooms);
 
-  const [stateButtons, setStateButtons] = useState({
-    minusAdults: false,
-    plusAdults: false,
-    minusChild: true,
-    plusChild: false,
-    minusRooms: true,
-    plusRooms: false,
-  });
-
-  const [childAge, setChildAge] = useState([]);
-
   const clickMinusAdults = () => {
     setAdults((adults) => adults - 1);
   };
@@ -42,25 +38,17 @@ function Filter({ filterData, setFilterData }) {
   };
   const clickMinusChild = () => {
     setChildren((children) => children - 1);
-    minusSelector();
+    setChildAge(childAge.slice(0, -1));
   };
   const clickPlusChild = () => {
     setChildren((children) => children + 1);
-    plusSelector();
+    setChildAge([...childAge, { id: Date.now() }]);
   };
   const clickMinusRooms = () => {
     setRooms((rooms) => rooms - 1);
   };
   const clickPlusRooms = () => {
     setRooms((rooms) => rooms + 1);
-  };
-
-  const plusSelector = () => {
-    setChildAge([...childAge, { id: Date.now() }]);
-  };
-
-  const minusSelector = () => {
-    setChildAge(childAge.slice(1));
   };
 
   useEffect(() => {
