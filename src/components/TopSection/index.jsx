@@ -1,27 +1,52 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import DatePicker from "react-datepicker";
 
-import Logo from '../../images/logo_triphouse_blue.svg';
-import GooglePlay from '../../images/google-play.svg';
-import AppleStore from '../../images/app_store.svg';
+import Logo from "../../images/logo_triphouse_blue.svg";
+import GooglePlay from "../../images/google-play.svg";
+import AppleStore from "../../images/app_store.svg";
 
-import Button from '../Button';
+import Filter from "../Filter";
+import Button from "../Button";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 function Top({ setAvailable }) {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
+  const [dateRange, setDateRange] = useState([new Date(), new Date()]);
+  const [startDate, endDate] = dateRange;
+  const [filterData, setFilterData] = useState({
+    adults: 2,
+    children: 0,
+    rooms: 1,
+  });
+  const [childAge, setChildAge] = useState([]);
+  const [visibleFilter, setVisibleFilter] = useState(false);
+  const [stateButtons, setStateButtons] = useState({
+    minusAdults: false,
+    plusAdults: false,
+    minusChild: true,
+    plusChild: false,
+    minusRooms: true,
+    plusRooms: false,
+  });
 
   const handleInput = (e) => {
     setText(e.target.value);
   };
 
   const handleClick = () => {
-    const url = new URL('https://fe-student-api.herokuapp.com/api/hotels');
-    url.searchParams.set('search', `${text}`);
+    const url = new URL("https://fe-student-api.herokuapp.com/api/hotels");
+    url.searchParams.set("search", `${text}`);
     fetch(`${url}`)
       .then((resonce) => resonce.json())
       .then((json) => {
         setAvailable(json);
       });
+  };
+
+  const filterClick = () => {
+    setVisibleFilter((visibleFilter) => !visibleFilter);
   };
 
   return (
@@ -32,10 +57,20 @@ function Top({ setAvailable }) {
             <img src={Logo} alt="logo" />
           </a>
           <ul>
-            <li className="header__stays"><a href="#stays">Stays</a></li>
-            <li className="header__attractions"><a href="#attractions">Attractions</a></li>
-            <li><div className="header__night" /></li>
-            <li><a href="#account" aria-label="account"><div className="header__account" /></a></li>
+            <li className="header__stays">
+              <a href="#stays">Stays</a>
+            </li>
+            <li className="header__attractions">
+              <a href="#attractions">Attractions</a>
+            </li>
+            <li>
+              <div className="header__night" />
+            </li>
+            <li>
+              <a href="#account" aria-label="account">
+                <div className="header__account" />
+              </a>
+            </li>
           </ul>
         </div>
         <div className="header__search">
@@ -47,7 +82,7 @@ function Top({ setAvailable }) {
           <form action="">
             <div className="header__destination">
               <label htmlFor="search">
-                Your destination or hotel name
+                <p>Your destination or hotel name</p>
                 <input
                   id="search"
                   value={text}
@@ -57,28 +92,57 @@ function Top({ setAvailable }) {
               </label>
             </div>
             <div className="header__date">
-              <div className="header__in">
-                <label htmlFor="inId">
-                  Check-in -
-                  <input type="date" id="inId" />
-                </label>
-              </div>
-              <div className="header__out">
-                <label htmlFor="outId">
-                  Check-out
-                  <input type="date" id="outId" />
-                </label>
-              </div>
+              <p>Check-in - Check-out</p>
+              <DatePicker
+                selectsRange
+                placeholderText="Check-in — Check-out"
+                startDate={startDate}
+                endDate={endDate}
+                onChange={(update) => {
+                  setDateRange(update);
+                }}
+                monthsShown={2}
+              />
             </div>
             <div className="header__people">
-              <input type="number" placeholder="2 Adults — 0 Children — 1 Room" />
+              <input
+                value={filterData}
+                onClick={filterClick}
+                type="number"
+                placeholder={
+                  `${filterData.adults}` +
+                  " Adults — " +
+                  `${filterData.children}` +
+                  " Children — " +
+                  `${filterData.rooms}` +
+                  " Room"
+                }
+              />
             </div>
-            <Button text="Search" handleClick={handleClick} />
+            <Button
+              className="header__button"
+              text="Search"
+              handleClick={handleClick}
+            />
           </form>
+          {visibleFilter && (
+            <Filter
+              filterData={filterData}
+              setFilterData={setFilterData}
+              childAge={childAge}
+              setChildAge={setChildAge}
+              stateButtons={stateButtons}
+              setStateButtons={setStateButtons}
+            />
+          )}
         </div>
         <div className="header__download">
-          <a href="#google"><img src={GooglePlay} alt="google-play" /></a>
-          <a href="#apple"><img src={AppleStore} alt="app_store" /></a>
+          <a href="#google">
+            <img src={GooglePlay} alt="google-play" />
+          </a>
+          <a href="#apple">
+            <img src={AppleStore} alt="app_store" />
+          </a>
         </div>
       </div>
     </header>
@@ -88,6 +152,5 @@ function Top({ setAvailable }) {
 export default Top;
 
 Top.propTypes = {
-  // availableHotels: PropTypes.arrayOf(PropTypes.object).isRequired,
   setAvailable: PropTypes.func.isRequired,
 };
