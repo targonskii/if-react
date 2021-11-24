@@ -45,10 +45,6 @@ function Top({ setAvailable }) {
       });
   };
 
-  const filterInput = (e) => {
-    setFilterData(e.target.value);
-  };
-
   const filterClick = () => {
     setVisibleFilter((visibleFilter) => !visibleFilter);
   };
@@ -112,7 +108,6 @@ function Top({ setAvailable }) {
               <input
                 value={filterData}
                 onClick={filterClick}
-                onChange={filterInput}
                 type="number"
                 placeholder={
                   `${filterData.adults}` +
