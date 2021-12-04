@@ -2,21 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-export default function HotelCard({ name, city, country, imageUrl, id }) {
+export default function HotelCard({ item }) {
   return (
     <div>
-      <Link to={`/hotels/${id}`}>
-        <img src={imageUrl} alt='hotel_picture' />
+      <Link to={`/hotels/${item.id}`}>
+        <img src={item.imageUrl} alt='hotel_picture' />
       </Link>
-      <Link to={`/hotels/${id}`}>
-        <p>{name}</p>
+      <Link to={`/hotels/${item.id}`}>
+        <p className='homes__slider_name'>{item.name}</p>
       </Link>
-      <Link to={`/hotels/${id}`}>
+      <Link to={`/hotels/${item.id}`}>
         <p>
-          {city}
+          {item.city}
           ,
           <br />
-          {country}
+          {item.country}
         </p>
       </Link>
     </div>
@@ -24,9 +24,5 @@ export default function HotelCard({ name, city, country, imageUrl, id }) {
 }
 
 HotelCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  city: PropTypes.string.isRequired,
-  country: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  key: PropTypes.string.isRequired,
+  item: PropTypes.object,
 };

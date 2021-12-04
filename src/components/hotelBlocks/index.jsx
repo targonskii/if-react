@@ -6,13 +6,7 @@ export default function HotelBlocks({ hotels }) {
   return (
     <div className='homes__slider'>
       {hotels.slice(0, 4).map((item) => (
-        <HotelCard
-          name={item.name}
-          city={item.city}
-          country={item.country}
-          imageUrl={item.imageUrl}
-          id={item.id}
-        />
+        <HotelCard item={item} key={item.id} />
       ))}
     </div>
   );

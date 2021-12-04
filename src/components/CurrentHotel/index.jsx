@@ -8,7 +8,7 @@ const CurrentHotel = () => {
   const { hotelId } = useParams();
   const history = useNavigate();
 
-  const [currentHotel, setCurrentHotel] = useState(null);
+  const [currentHotel, setCurrentHotel] = useState({});
 
   useEffect(() => {
     const url = new URL(
