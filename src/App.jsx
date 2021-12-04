@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 
@@ -27,11 +27,9 @@ function App() {
       {availableHotels?.length >= 1 && (
         <AvailableHotels availableHotels={availableHotels} />
       )}
-      <Router>
-        <Routes>
-          <Route exact path='/hotels/:hotelId' element={<CurrentHotel />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route exact path='/hotels/:hotelId' element={<CurrentHotel />} />
+      </Routes>
       <HomesHotels hotels={hotels} />
       <Footer />
     </>

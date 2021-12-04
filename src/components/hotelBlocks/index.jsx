@@ -11,7 +11,7 @@ export default function HotelBlocks({ hotels }) {
           city={item.city}
           country={item.country}
           imageUrl={item.imageUrl}
-          key={item.id}
+          id={item.id}
         />
       ))}
     </div>
