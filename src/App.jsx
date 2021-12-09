@@ -28,9 +28,16 @@ function App() {
         <AvailableHotels availableHotels={availableHotels} />
       )}
       <Routes>
-        <Route exact path='/hotels/:hotelId' element={<CurrentHotel />} />
+        <Route
+          path='/'
+          element={
+            <>
+              <HomesHotels hotels={hotels} />
+            </>
+          }
+        />
+        <Route path='/hotels/:hotelId' element={<CurrentHotel />} />
       </Routes>
-      <HomesHotels hotels={hotels} />
       <Footer />
     </>
   );

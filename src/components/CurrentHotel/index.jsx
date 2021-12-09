@@ -25,11 +25,11 @@ const CurrentHotel = () => {
 
   return (
     <div className='homes__slider'>
-      <Link to='/hotels'>
+      <Link to='/'>
         <Button
-          className='header__button'
+          className='available_hotel'
           text='Go Back'
-          onClick={() => history.goBack()}
+          onClick={() => history.push('/')}
         />
       </Link>
       <a>

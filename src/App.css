@@ -682,3 +682,14 @@ header {
     padding-top: 4px;
   }
 }
+
+.available_hotel {
+  width: 192px;
+  flex-grow: 1;
+  height: 64px;
+  margin-top: 45px;
+  color: #ffffff;
+  background: #3077c6;
+  border-radius: 8px;
+  font-size: 24px;
+}
