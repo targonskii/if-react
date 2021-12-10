@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
 
 import Top from './components/TopSection';
 import AvailableHotels from './components/AvailableHotels';
-import CurrentHotel from './components/CurrentHotel';
-import HomesHotels from './components/Homes';
+// import CurrentHotel from './components/CurrentHotel';
+// import HomesHotels from './components/Homes';
+import Routes from './components/Routes';
 import Footer from './components/Footer';
 
 function App() {
@@ -27,17 +28,7 @@ function App() {
       {availableHotels?.length >= 1 && (
         <AvailableHotels availableHotels={availableHotels} />
       )}
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <>
-              <HomesHotels hotels={hotels} />
-            </>
-          }
-        />
-        <Route path='/hotels/:hotelId' element={<CurrentHotel />} />
-      </Routes>
+      <Routes hotels={hotels} />
       <Footer />
     </>
   );

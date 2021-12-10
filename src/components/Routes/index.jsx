@@ -1,21 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Route } from 'react-router-dom';
+import { Routes as ReactRoutes, Route } from 'react-router-dom';
 
-import Top from '../TopSection';
+// import Top from '../TopSection';
 import HomesHotels from '../Homes';
 import CurrentHotel from '../CurrentHotel';
-import Footer from '../Footer';
+// import Footer from '../Footer';
 
-const Routes = () => {
+const Routes = ({ hotels, setAvailable }) => {
   return (
-    <>
+    <ReactRoutes>
       <Route
         path='/'
         element={
           <>
-            <Top setAvailable={setAvailable} />
             <HomesHotels hotels={hotels} />
-            <Footer />
           </>
         }
       />
@@ -23,13 +21,11 @@ const Routes = () => {
         path='/hotels/:hotelId'
         element={
           <>
-            <Top setAvailable={setAvailable} />
             <CurrentHotel />
-            <Footer />
           </>
         }
       />
-    </>
+    </ReactRoutes>
   );
 };
 
