@@ -52,7 +52,7 @@ const LoginPage = () => {
             </ul>
           </div>
           <div className='header__login'>
-            <form action=''>
+            <form onSubmit={handleSubmit} action=''>
               <p>Sign In</p>
               <div className='header__login_email'>
                 <p>
@@ -74,7 +74,7 @@ const LoginPage = () => {
                   onChange={handleChange('password')}
                 />
               </div>
-              <Button text='Sign In' onClick={handleSubmit} />
+              <Button type='submit' text='Sign In' />
             </form>
           </div>
         </div>

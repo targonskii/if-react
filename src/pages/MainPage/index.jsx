@@ -22,7 +22,7 @@ const MainPage = () => {
   };
 
   const signOut = () => {
-    setContextState(publicContext);
+    setContextState({ ...publicContext });
   };
 
   useEffect(() => {

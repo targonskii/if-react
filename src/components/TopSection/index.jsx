@@ -11,6 +11,7 @@ import AppleStore from '../../images/app_store.svg';
 
 import Filter from '../Filter';
 import Button from '../Button';
+import Dropdown from '../Dropdown';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -52,15 +53,14 @@ function Top({ setAvailable }) {
     setVisibleFilter((visibleFilter) => !visibleFilter);
   };
 
-  // const { signOut } = useContext(PrivateContext);
-  // const { showAuth, setShowAuth } = useState(false);
-  // const showMenu = setShowAuth((showAuth) => !showAuth);
+  const [showAuth, setShowAuth] = useState(false);
+  const { signOut } = useContext(PrivateContext);
 
   const signOutClick = useCallback((e) => {
     e.preventDefault();
     signOut();
     setShowAuth((showAuth) => !showAuth);
-  });
+  }, []);
 
   return (
     <header className='header'>
@@ -82,15 +82,18 @@ function Top({ setAvailable }) {
             <li>
               <div
                 className='header__account'
-                onClick={(showAuth) => !showAuth}
+                onClick={() => {
+                  setShowAuth((showAuth) => !showAuth);
+                }}
               />
             </li>
           </ul>
           {showAuth && (
-            <div className='header__signout' onClick={signOutClick}>
-              <img src={SignOut} alt='signout' />
-              <p>Sign Out</p>
-            </div>
+            <Dropdown
+              handleClick={signOutClick}
+              text={'Sign out'}
+              img={SignOut}
+            />
           )}
         </div>
         <div className='header__search'>
@@ -141,6 +144,7 @@ function Top({ setAvailable }) {
               />
             </div>
             <Button
+              type='button'
               className='header__button'
               text='Search'
               handleClick={handleClick}
