@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
+import { PrivateContext } from '../../context';
+import { Link } from 'react-router-dom';
 
 import Logo from '../../images/logo_triphouse_blue.svg';
+import SignOut from '../../images/sign_out.svg';
 import GooglePlay from '../../images/google-play.svg';
 import AppleStore from '../../images/app_store.svg';
 
@@ -49,13 +52,23 @@ function Top({ setAvailable }) {
     setVisibleFilter((visibleFilter) => !visibleFilter);
   };
 
+  // const { signOut } = useContext(PrivateContext);
+  // const { showAuth, setShowAuth } = useState(false);
+  // const showMenu = setShowAuth((showAuth) => !showAuth);
+
+  const signOutClick = useCallback((e) => {
+    e.preventDefault();
+    signOut();
+    setShowAuth((showAuth) => !showAuth);
+  });
+
   return (
     <header className='header'>
       <div className='header__main'>
         <div className='header__menu'>
-          <a href='#menu'>
+          <Link to='/'>
             <img src={Logo} alt='logo' />
-          </a>
+          </Link>
           <ul>
             <li className='header__stays'>
               <a href='#stays'>Stays</a>
@@ -67,11 +80,18 @@ function Top({ setAvailable }) {
               <div className='header__night' />
             </li>
             <li>
-              <a href='#account' aria-label='account'>
-                <div className='header__account' />
-              </a>
+              <div
+                className='header__account'
+                onClick={(showAuth) => !showAuth}
+              />
             </li>
           </ul>
+          {showAuth && (
+            <div className='header__signout' onClick={signOutClick}>
+              <img src={SignOut} alt='signout' />
+              <p>Sign Out</p>
+            </div>
+          )}
         </div>
         <div className='header__search'>
           <p className='header__title'>

@@ -1,30 +1,16 @@
 import React from 'react';
 import { Routes as ReactRoutes, Route } from 'react-router-dom';
 
-// import Top from '../TopSection';
-import HomesHotels from '../Homes';
+import MainPage from '../../pages/MainPage';
 import CurrentHotel from '../CurrentHotel';
-// import Footer from '../Footer';
+import LoginPage from '../../pages/LoginPage';
 
-const Routes = ({ hotels, setAvailable }) => {
+const Routes = ({ hotels }) => {
   return (
     <ReactRoutes>
-      <Route
-        path='/'
-        element={
-          <>
-            <HomesHotels hotels={hotels} />
-          </>
-        }
-      />
-      <Route
-        path='/hotels/:hotelId'
-        element={
-          <>
-            <CurrentHotel />
-          </>
-        }
-      />
+      <Route path='/' element={<MainPage hotels={hotels} />}></Route>
+      <Route path='/login' element={<LoginPage />}></Route>
+      <Route path='/hotels/:hotelId' element={<CurrentHotel />}></Route>
     </ReactRoutes>
   );
 };
