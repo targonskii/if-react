@@ -27,6 +27,7 @@ const CurrentHotel = () => {
     <div className='homes__slider'>
       <Link to='/'>
         <Button
+          type='button'
           className='available_hotel'
           text='Go Back'
           onClick={() => history.push('/')}

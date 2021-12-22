@@ -69,6 +69,7 @@ header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 202px;
+  position: relative;
 }
 .header__menu ul {
   list-style-type: none;
@@ -86,6 +87,29 @@ header {
   list-style-type: none;
   text-decoration: none;
   color: #ffffff;
+}
+.header__signout {
+  height: 50px;
+  width: 192px;
+  background-color: #ffffff;
+  display: flex;
+  position: absolute;
+  right: 0px;
+  top: 70px;
+}
+.header__signout img {
+  height: 18px;
+  width: 20px;
+  margin: 16px 16px 16px 16px;
+}
+.header__signout p {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
 }
 .header__search {
   margin-bottom: 120px;
@@ -128,9 +152,6 @@ header {
 .header__people_disabled {
   border: 1px solid #cecece !important;
   color: #cecece !important;
-}
-.header__people_age {
-  /* flex-direction: column; */
 }
 .header__people_age div {
   display: block;
@@ -210,54 +231,6 @@ header {
 .header__mobile {
   display: none;
 }
-.header__login {
-  width: 400px;
-  height: 364px;
-  background: #ffffff;
-  margin: 0px auto;
-  padding: 0 40px;
-}
-.header__login form {
-  display: block;
-  margin: 0px auto;
-  width: 100%;
-}
-.header__login form p {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
-  text-align: center;
-  padding-top: 36px;
-  padding-bottom: 24fpx;
-}
-.header__login form div {
-  margin: 0;
-}
-.header__login form div p {
-  padding: 12px 0 8px 0;
-  text-align: left;
-}
-.header__login form div label {
-  font-style: normal;
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 19px;
-  color: black;
-}
-.header__login form div input {
-  border: 2px solid #cecece;
-  border-radius: 8px;
-  width: 100%;
-  padding: 0;
-  height: 41px;
-}
-.header__login form button {
-  width: 100%;
-  height: 48px;
-  margin-top: 24px;
-}
 
 .header__people_filter {
   display: block;
@@ -282,9 +255,7 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-/* .header__people_filter div:nth-child(4) {
-  display: none;
-} */
+
 .header__people_filter div label {
   font-family: Roboto;
   font-weight: 400;

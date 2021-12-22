@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
+import { PrivateContext } from '../../context';
+import { Link } from 'react-router-dom';
 
 import Logo from '../../images/logo_triphouse_blue.svg';
+import SignOut from '../../images/sign_out.svg';
 import GooglePlay from '../../images/google-play.svg';
 import AppleStore from '../../images/app_store.svg';
 
 import Filter from '../Filter';
 import Button from '../Button';
+import Dropdown from '../Dropdown';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -49,13 +53,22 @@ function Top({ setAvailable }) {
     setVisibleFilter((visibleFilter) => !visibleFilter);
   };
 
+  const [showAuth, setShowAuth] = useState(false);
+  const { signOut } = useContext(PrivateContext);
+
+  const signOutClick = useCallback((e) => {
+    e.preventDefault();
+    signOut();
+    setShowAuth((showAuth) => !showAuth);
+  }, []);
+
   return (
     <header className='header'>
       <div className='header__main'>
         <div className='header__menu'>
-          <a href='#menu'>
+          <Link to='/'>
             <img src={Logo} alt='logo' />
-          </a>
+          </Link>
           <ul>
             <li className='header__stays'>
               <a href='#stays'>Stays</a>
@@ -67,11 +80,21 @@ function Top({ setAvailable }) {
               <div className='header__night' />
             </li>
             <li>
-              <a href='#account' aria-label='account'>
-                <div className='header__account' />
-              </a>
+              <div
+                className='header__account'
+                onClick={() => {
+                  setShowAuth((showAuth) => !showAuth);
+                }}
+              />
             </li>
           </ul>
+          {showAuth && (
+            <Dropdown
+              handleClick={signOutClick}
+              text={'Sign out'}
+              img={SignOut}
+            />
+          )}
         </div>
         <div className='header__search'>
           <p className='header__title'>
@@ -121,6 +144,7 @@ function Top({ setAvailable }) {
               />
             </div>
             <Button
+              type='button'
               className='header__button'
               text='Search'
               handleClick={handleClick}

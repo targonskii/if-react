@@ -1,36 +1,29 @@
-import React, { useState, useEffect } from 'react';
-// import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import { publicContext, PrivateContext } from './context';
 
 import './App.css';
 
-import Top from './components/TopSection';
-import AvailableHotels from './components/AvailableHotels';
-// import CurrentHotel from './components/CurrentHotel';
-// import HomesHotels from './components/Homes';
 import Routes from './components/Routes';
-import Footer from './components/Footer';
+import LoginPage from './pages/LoginPage';
 
 function App() {
-  const [hotels, setHotels] = useState([]);
-  const [availableHotels, setAvailable] = useState([]);
+  const [contextState, setContextState] = useState({ ...publicContext });
 
-  useEffect(() => {
-    fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
-      .then((resonce) => resonce.json())
-      .then((json) => {
-        setHotels(json);
-      });
-  }, []);
+  const signIn = (user) => {
+    setContextState({
+      user,
+      isLoggedIn: true,
+    });
+  };
+
+  const signOut = () => {
+    setContextState({ ...publicContext });
+  };
 
   return (
-    <>
-      <Top setAvailable={setAvailable} />
-      {availableHotels?.length >= 1 && (
-        <AvailableHotels availableHotels={availableHotels} />
-      )}
-      <Routes hotels={hotels} />
-      <Footer />
-    </>
+    <PrivateContext.Provider value={{ contextState, signIn, signOut }}>
+      <>{contextState.isLoggedIn ? <Routes /> : <LoginPage />}</>
+    </PrivateContext.Provider>
   );
 }
 
