@@ -1,7 +1,7 @@
 import React, { useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
-import { PrivateContext } from '../../context';
+// import { PrivateContext } from '../../context';
 import { Link } from 'react-router-dom';
 
 import Logo from '../../images/logo_triphouse_blue.svg';
@@ -14,6 +14,9 @@ import Button from '../Button';
 import Dropdown from '../Dropdown';
 
 import 'react-datepicker/dist/react-datepicker.css';
+
+import { signOut } from '../../redux/actions/loginActions';
+import store from '../../redux/store';
 
 function Top({ setAvailable }) {
   const [text, setText] = useState('');
@@ -54,11 +57,11 @@ function Top({ setAvailable }) {
   };
 
   const [showAuth, setShowAuth] = useState(false);
-  const { signOut } = useContext(PrivateContext);
+  // const { signOut } = useContext(PrivateContext);
 
   const signOutClick = useCallback((e) => {
     e.preventDefault();
-    signOut();
+    // store.dispatch(signOut(false));
     setShowAuth((showAuth) => !showAuth);
   }, []);
 
