@@ -8,9 +8,9 @@ import LoginPage from '../../pages/LoginPage';
 const Routes = ({ hotels }) => {
   return (
     <ReactRoutes>
-      <Route path='/' element={<MainPage hotels={hotels} />}></Route>
-      <Route path='/login' element={<LoginPage />}></Route>
-      <Route path='/hotels/:hotelId' element={<CurrentHotel />}></Route>
+      <Route path='/' element={<MainPage hotels={hotels} />} />
+      <Route path='/login' element={<LoginPage />} />
+      <Route path='/hotels/:hotelId' element={<CurrentHotel />} />
     </ReactRoutes>
   );
 };

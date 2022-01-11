@@ -1,9 +1,11 @@
 import { actionTypes } from '../constants/actionTypes';
 
-export const signIn = ({ isLoggedIn = false }) => ({
-  type: actionTypes.signIn,
-  isLoggedIn,
-});
+export const signIn = (isLoggedIn = false) => {
+  return {
+    type: actionTypes.signIn,
+    isLoggedIn,
+  };
+};
 
 export const signOut = ({ isLoggedIn = true }) => ({
   type: actionTypes.signOut,

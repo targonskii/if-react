@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import { PrivateContext } from '../../context';
 
 import Logo from '../../images/logo_triphouse_blue.svg';
 
@@ -10,13 +8,10 @@ import Button from '../../components/Button';
 
 import './index.css';
 
-import * as actions from '../../redux/actions/loginActions';
-import store from '../../redux/store';
+import { signIn } from '../../redux/actions/loginActions';
 
-const LoginPage = (signIn) => {
+const LoginPage = ({ signIn }) => {
   const [loginState, setLoginState] = useState({ email: '', password: '' });
-  // const { dispatch } = store;
-  // const { signIn } = useContext(PrivateContext);
 
   const handleChange = useCallback(
     (key) => (e) => {
@@ -39,7 +34,7 @@ const LoginPage = (signIn) => {
       <header>
         <div className='header__main'>
           <div className='header__menu'>
-            <Link to='/'>
+            <Link to='/login'>
               <img src={Logo} alt='logo' />
             </Link>
             <ul>
@@ -89,12 +84,6 @@ const LoginPage = (signIn) => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {};
-// };
+const mapDispatchToProps = { signIn };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators(actions, dispatch);
-// };
-
-export default connect(null, actions)(LoginPage);
+export default connect(null, mapDispatchToProps)(LoginPage);

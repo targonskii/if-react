@@ -12,11 +12,13 @@ const MainPage = () => {
   const [availableHotels, setAvailable] = useState([]);
 
   useEffect(() => {
+    let cleanupFunction = false;
     fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
       .then((resonce) => resonce.json())
       .then((json) => {
-        setHotels(json);
+        if (!cleanupFunction) setHotels(json);
       });
+    return () => (cleanupFunction = true);
   }, []);
 
   return (
