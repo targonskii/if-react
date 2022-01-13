@@ -1,30 +1,25 @@
-import React, { useState } from 'react';
-import { publicContext, PrivateContext } from './context';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import './App.css';
 
 import Routes from './components/Routes';
-import LoginPage from './pages/LoginPage';
 
-function App() {
-  const [contextState, setContextState] = useState({ ...publicContext });
+const App = ({ login }) => {
+  let navigate = useNavigate();
 
-  const signIn = (user) => {
-    setContextState({
-      user,
-      isLoggedIn: true,
-    });
+  useEffect(() => {
+    login ? navigate('/') : navigate('/login');
+  }, [login]);
+
+  return <Routes />;
+};
+
+const mapStateToProps = (state) => {
+  return {
+    login: state.isLoggedIn,
   };
+};
 
-  const signOut = () => {
-    setContextState({ ...publicContext });
-  };
-
-  return (
-    <PrivateContext.Provider value={{ contextState, signIn, signOut }}>
-      <>{contextState.isLoggedIn ? <Routes /> : <LoginPage />}</>
-    </PrivateContext.Provider>
-  );
-}
-
-export default App;
+export default connect(mapStateToProps)(App);

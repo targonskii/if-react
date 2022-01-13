@@ -1,6 +1,6 @@
-import React, { useState, useContext, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PrivateContext } from '../../context';
+import { connect } from 'react-redux';
 
 import Logo from '../../images/logo_triphouse_blue.svg';
 
@@ -8,9 +8,10 @@ import Button from '../../components/Button';
 
 import './index.css';
 
-const LoginPage = () => {
+import { signIn } from '../../redux/actions/loginActions';
+
+const LoginPage = ({ signIn }) => {
   const [loginState, setLoginState] = useState({ email: '', password: '' });
-  const { signIn } = useContext(PrivateContext);
 
   const handleChange = useCallback(
     (key) => (e) => {
@@ -25,7 +26,7 @@ const LoginPage = () => {
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
-    signIn(loginState);
+    signIn(true);
   }, []);
 
   return (
@@ -33,7 +34,7 @@ const LoginPage = () => {
       <header>
         <div className='header__main'>
           <div className='header__menu'>
-            <Link to='/'>
+            <Link to='/login'>
               <img src={Logo} alt='logo' />
             </Link>
             <ul>
@@ -83,4 +84,6 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+const mapDispatchToProps = { signIn };
+
+export default connect(null, mapDispatchToProps)(LoginPage);
