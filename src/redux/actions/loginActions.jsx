@@ -1,19 +1,7 @@
-import { actionTypes } from '../constants/actionTypes';
+import { createActions } from 'redux-actions';
 
-export const signIn = (isLoggedIn = false) => {
-  return {
-    type: actionTypes.signIn,
-    isLoggedIn,
-  };
-};
-
-export const signOut = ({ isLoggedIn = true }) => ({
-  type: actionTypes.signOut,
-  isLoggedIn,
-});
-
-export const login = ({ email = '', password = '' }) => ({
-  type: actionTypes.addUser,
-  email,
-  password,
-});
+export const { signIn, signOut, login } = createActions(
+  'SIGNIN',
+  'SIGNOUT',
+  'ADD_USER'
+);

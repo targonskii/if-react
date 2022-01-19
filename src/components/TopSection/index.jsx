@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Logo from '../../images/logo_triphouse_blue.svg';
@@ -17,7 +17,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import { signOut } from '../../redux/actions/loginActions';
 
-function Top({ setAvailable, signOut }) {
+function Top({ setAvailable }) {
   const [text, setText] = useState('');
   const [dateRange, setDateRange] = useState([new Date(), new Date()]);
   const [startDate, endDate] = dateRange;
@@ -36,6 +36,7 @@ function Top({ setAvailable, signOut }) {
     minusRooms: true,
     plusRooms: false,
   });
+  const dispatch = useDispatch();
 
   const handleInput = (e) => {
     setText(e.target.value);
@@ -59,7 +60,7 @@ function Top({ setAvailable, signOut }) {
 
   const signOutClick = useCallback((e) => {
     e.preventDefault();
-    signOut(false);
+    dispatch(signOut(false));
     setShowAuth((showAuth) => !showAuth);
   }, []);
 
@@ -175,9 +176,9 @@ function Top({ setAvailable, signOut }) {
   );
 }
 
-const mapDispatchToProps = { signOut };
+// const mapDispatchToProps = { signOut };
 
-export default connect(null, mapDispatchToProps)(Top);
+export default Top;
 
 Top.propTypes = {
   setAvailable: PropTypes.func.isRequired,

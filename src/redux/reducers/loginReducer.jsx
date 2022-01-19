@@ -1,28 +1,55 @@
-import { actionTypes } from '../constants/actionTypes';
+import { handleActions } from 'redux-actions';
+
+import { signIn, signOut, login } from '../actions/loginActions';
 
 import { initialLoginState } from '../constants/initialState';
 
-const loginReducer = (state = initialLoginState, action) => {
-  switch (action.type) {
-    case actionTypes.signIn:
+export const loginReducer = handleActions(
+  {
+    [signIn]: (state, { payload }) => {
       return {
         ...state,
-        isLoggedIn: true,
+        isLoggedIn: payload,
       };
-    case actionTypes.signOut:
+    },
+    [signOut]: (state, { payload }) => {
       return {
         ...state,
-        isLoggedIn: false,
+        isLoggedIn: payload,
       };
-    case actionTypes.addUser:
+    },
+    [login]: (state, { payload }) => {
       return {
         ...state,
-        email: action.email,
-        password: action.password,
+        email: payload.email,
+        password: payload.password,
       };
-    default:
-      return state;
-  }
-};
+    },
+  },
+  initialLoginState
+);
 
-export { loginReducer };
+// const loginReducer = (state = initialLoginState, action) => {
+//   switch (action.type) {
+//     case actionTypes.signIn:
+//       return {
+//         ...state,
+//         isLoggedIn: true,
+//       };
+//     case actionTypes.signOut:
+//       return {
+//         ...state,
+//         isLoggedIn: false,
+//       };
+//     case actionTypes.addUser:
+//       return {
+//         ...state,
+//         email: action.email,
+//         password: action.password,
+//       };
+//     default:
+//       return state;
+//   }
+// };
+
+// export { loginReducer };
