@@ -9,7 +9,7 @@ import Button from '../../components/Button';
 
 import './index.css';
 
-import { signIn } from '../../redux/actions/loginActions';
+import { signIn, login } from '../../redux/actions/loginActions';
 
 const LoginPage = () => {
   const [loginState, setLoginState] = useState({ email: '', password: '' });
@@ -26,10 +26,14 @@ const LoginPage = () => {
     []
   );
 
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault();
-    dispatch(signIn(true));
-  }, []);
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(login(loginState));
+      dispatch(signIn(true));
+    },
+    [dispatch]
+  );
 
   return (
     <div className='wrapper'>
