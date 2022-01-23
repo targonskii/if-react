@@ -13,15 +13,9 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, loginReducer);
 
 const configureStore = () => {
-  const store = createStore(persistedReducer);
+  const store = createStore(persistedReducer, devToolsEnhancer());
   const persistor = persistStore(store);
-
   return { store, persistor };
 };
-
-// const store = createStore(
-//   loginReducer,
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// );
 
 export const { store, persistor } = configureStore();

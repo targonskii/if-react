@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-// import { connect } from 'react-redux';
 
 import Logo from '../../images/logo_triphouse_blue.svg';
 
@@ -90,7 +89,4 @@ const LoginPage = () => {
   );
 };
 
-// const mapDispatchToProps = { signIn };
-
-// export default connect(null, mapDispatchToProps)(LoginPage);
 export default LoginPage;

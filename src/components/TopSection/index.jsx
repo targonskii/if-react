@@ -176,8 +176,6 @@ function Top({ setAvailable }) {
   );
 }
 
-// const mapDispatchToProps = { signOut };
-
 export default Top;
 
 Top.propTypes = {

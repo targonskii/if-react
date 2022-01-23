@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import { connect } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,11 +17,4 @@ const App = () => {
   return <Routes />;
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     login: state.isLoggedIn,
-//   };
-// };
-
-// export default connect(mapStateToProps)(App);
 export default App;
