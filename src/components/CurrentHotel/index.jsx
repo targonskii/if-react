@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import Button from '../Button';
 
+import { apiHotelsUrl } from '../../redux/constants/urls';
+
 const CurrentHotel = () => {
   const { hotelId } = useParams();
   const history = useNavigate();
@@ -11,9 +13,7 @@ const CurrentHotel = () => {
   const [currentHotel, setCurrentHotel] = useState({});
 
   useEffect(() => {
-    const url = new URL(
-      'https://fe-student-api.herokuapp.com/api/hotels/hotelId'
-    );
+    const url = new URL(`${apiHotelsUrl}/hotelId`);
     const urlHotel = new URL(hotelId, url);
 
     fetch(`${urlHotel}`)

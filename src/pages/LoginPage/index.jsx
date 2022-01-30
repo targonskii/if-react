@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Logo from '../../images/logo_triphouse_blue.svg';
 
@@ -8,10 +8,11 @@ import Button from '../../components/Button';
 
 import './index.css';
 
-import { signIn } from '../../redux/actions/loginActions';
+import { signIn, login } from '../../redux/actions/loginActions';
 
-const LoginPage = ({ signIn }) => {
+const LoginPage = () => {
   const [loginState, setLoginState] = useState({ email: '', password: '' });
+  const dispatch = useDispatch();
 
   const handleChange = useCallback(
     (key) => (e) => {
@@ -24,10 +25,13 @@ const LoginPage = ({ signIn }) => {
     []
   );
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    signIn(true);
-  }, []);
+    if (loginState.email && loginState.password) {
+      dispatch(login(loginState));
+      dispatch(signIn(true));
+    }
+  };
 
   return (
     <div className='wrapper'>
@@ -84,6 +88,4 @@ const LoginPage = ({ signIn }) => {
   );
 };
 
-const mapDispatchToProps = { signIn };
-
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default LoginPage;

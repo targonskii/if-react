@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Logo from '../../images/logo_triphouse_blue.svg';
@@ -13,14 +13,19 @@ import Filter from '../Filter';
 import Button from '../Button';
 import Dropdown from '../Dropdown';
 
+import { apiHotelsUrl } from '../../redux/constants/urls';
+
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { signOut } from '../../redux/actions/loginActions';
+import { useSelector } from 'react-redux';
 
-function Top({ setAvailable, signOut }) {
+function Top({ setAvailable }) {
   const [text, setText] = useState('');
   const [dateRange, setDateRange] = useState([new Date(), new Date()]);
   const [startDate, endDate] = dateRange;
+  const dates = useSelector(({ query }) => query);
+
   const [filterData, setFilterData] = useState({
     adults: 2,
     children: 0,
@@ -36,13 +41,14 @@ function Top({ setAvailable, signOut }) {
     minusRooms: true,
     plusRooms: false,
   });
+  const dispatch = useDispatch();
 
   const handleInput = (e) => {
     setText(e.target.value);
   };
 
   const handleClick = () => {
-    const url = new URL('https://fe-student-api.herokuapp.com/api/hotels');
+    const url = new URL(apiHotelsUrl);
     url.searchParams.set('search', `${text}`);
     fetch(`${url}`)
       .then((resonce) => resonce.json())
@@ -59,7 +65,7 @@ function Top({ setAvailable, signOut }) {
 
   const signOutClick = useCallback((e) => {
     e.preventDefault();
-    signOut(false);
+    dispatch(signOut(false));
     setShowAuth((showAuth) => !showAuth);
   }, []);
 
@@ -175,10 +181,8 @@ function Top({ setAvailable, signOut }) {
   );
 }
 
-const mapDispatchToProps = { signOut };
+export default Top;
 
-export default connect(null, mapDispatchToProps)(Top);
-
-Top.propTypes = {
-  setAvailable: PropTypes.func.isRequired,
-};
+// Top.propTypes = {
+//   setAvailable: PropTypes.func.isRequired,
+// };
