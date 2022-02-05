@@ -10,11 +10,10 @@ export const initialHotelsState = {
 };
 
 export const initialQueryState = {
-  destination: '',
-  checkIn: null,
-  checkOut: null,
+  search: '',
+  dateFrom: null,
+  dateTo: null,
   adults: 2,
-  children: 0,
+  children: [],
   rooms: 1,
-  childrenAge: [],
 };

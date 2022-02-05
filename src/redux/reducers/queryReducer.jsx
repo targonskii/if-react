@@ -7,7 +7,6 @@ import {
   setAdults,
   setChildren,
   setRooms,
-  setChildrenAge,
 } from '../actions/queryActions';
 
 import { initialQueryState } from '../constants/initialState';
@@ -17,19 +16,19 @@ export const queryReducer = handleActions(
     [setDestination]: (state, { payload }) => {
       return {
         ...state,
-        destination: payload,
+        search: payload,
       };
     },
     [setCheckIn]: (state, { payload }) => {
       return {
         ...state,
-        checkIn: payload,
+        dateFrom: payload,
       };
     },
     [setCheckOut]: (state, { payload }) => {
       return {
         ...state,
-        checkOut: payload,
+        dateTo: payload,
       };
     },
     [setAdults]: (state, { payload }) => {
@@ -48,12 +47,6 @@ export const queryReducer = handleActions(
       return {
         ...state,
         rooms: payload,
-      };
-    },
-    [setChildrenAge]: (state, { payload }) => {
-      return {
-        ...state,
-        childrenAge: payload,
       };
     },
   },

@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage';
 
 import hotelsSaga from './sagas/hotelsSaga';
 
-import rootReducer from './reducers';
+import rootReducer from '.';
 
 import middleWare, { sagaMiddleware } from './middleware';
 

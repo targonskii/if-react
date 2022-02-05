@@ -9,13 +9,13 @@ export const hotelsReducer = handleActions(
     [setPopularHotels]: (state, { payload }) => {
       return {
         ...state,
-        setPopularHotels: payload,
+        popularHotels: payload,
       };
     },
     [setAvailableHotels]: (state, { payload }) => {
       return {
         ...state,
-        setAvailableHotels: payload,
+        availableHotels: payload,
       };
     },
   },

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import '../../App.css';
 
@@ -8,24 +8,19 @@ import AvailableHotels from '../../components/AvailableHotels';
 import HomesHotels from '../../components/Homes';
 import Footer from '../../components/Footer';
 
-// import { apiPopularHotelsUrl } from '../../redux/constants/urls';
+import { getPopularHotels } from '../../redux/actions/hotelsActions';
 
 const MainPage = () => {
-  const availableHotels = useSelector(({ hotels }) => hotels.availableHotels);
-  const popHotels = useSelector(({ hotels }) => hotels.popularHotels);
+  const availableHotels = useSelector(
+    (state) => state.hotels.availableHotels || []
+  );
 
-  // const [hotels, setHotels] = useState([]);
-  // const [availableHotels, setAvailable] = useState([]);
+  const popHotels = useSelector((state) => state.hotels.popularHotels || []);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   let cleanupFunction = false;
-  //   fetch(apiPopularHotelsUrl)
-  //     .then((resonce) => resonce.json())
-  //     .then((json) => {
-  //       if (!cleanupFunction) setHotels(json);
-  //     });
-  //   return () => (cleanupFunction = true);
-  // }, []);
+  useEffect(() => {
+    dispatch(getPopularHotels());
+  }, [dispatch]);
 
   return (
     <>

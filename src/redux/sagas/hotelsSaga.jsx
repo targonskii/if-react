@@ -8,25 +8,28 @@ import {
 
 import { apiHotelsUrl, apiPopularHotelsUrl, getData } from '../constants/urls';
 
-function* getHotelsSaga({ type }) {
+function* getPopularHotelsSaga() {
   try {
-    if (type === getPopularHotels.toString()) {
-      const popularHotels = yield call(getData, apiPopularHotelsUrl);
-      yield put(setPopularHotels(popularHotels));
-    }
-    if (type === getAvailableHotels.toString()) {
-      const queryParams = yield select(({ query }) => query);
-      const availableHotels = yield call(getData, apiHotelsUrl, queryParams);
-      yield put(setAvailableHotels(availableHotels));
-    }
+    const popularHotels = yield call(getData, apiPopularHotelsUrl);
+    yield put(setPopularHotels(popularHotels));
+  } catch (err) {
+    console.log('Error:', err.message);
+  }
+}
+
+function* getAvailableHotelsSaga() {
+  try {
+    const queryParams = yield select((state) => state.query);
+    const availableHotels = yield call(getData, apiHotelsUrl, queryParams);
+    yield put(setAvailableHotels(availableHotels));
   } catch (err) {
     console.log('Error:', err.message);
   }
 }
 
 function* hotelsSaga() {
-  yield takeLatest(getPopularHotels.toString(), getHotelsSaga);
-  yield takeLatest(getAvailableHotels.toString(), getHotelsSaga);
+  yield takeLatest(getPopularHotels, getPopularHotelsSaga);
+  yield takeLatest(getAvailableHotels, getAvailableHotelsSaga);
 }
 
 export default hotelsSaga;
