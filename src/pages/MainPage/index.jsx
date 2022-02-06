@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import '../../App.css';
 
@@ -7,27 +8,27 @@ import AvailableHotels from '../../components/AvailableHotels';
 import HomesHotels from '../../components/Homes';
 import Footer from '../../components/Footer';
 
+import { getPopularHotels } from '../../redux/actions/hotelsActions';
+
 const MainPage = () => {
-  const [hotels, setHotels] = useState([]);
-  const [availableHotels, setAvailable] = useState([]);
+  const availableHotels = useSelector(
+    (state) => state.hotels.availableHotels || []
+  );
+
+  const popHotels = useSelector((state) => state.hotels.popularHotels || []);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    let cleanupFunction = false;
-    fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
-      .then((resonce) => resonce.json())
-      .then((json) => {
-        if (!cleanupFunction) setHotels(json);
-      });
-    return () => (cleanupFunction = true);
-  }, []);
+    dispatch(getPopularHotels());
+  }, [dispatch]);
 
   return (
     <>
-      <Top setAvailable={setAvailable} />
+      <Top />
       {availableHotels?.length >= 1 && (
         <AvailableHotels availableHotels={availableHotels} />
       )}
-      <HomesHotels hotels={hotels} />
+      <HomesHotels hotels={popHotels} />
       <Footer />
     </>
   );

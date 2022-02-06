@@ -1,5 +1,4 @@
-import React, { useState, useCallback } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useCallback, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -15,16 +14,28 @@ import Dropdown from '../Dropdown';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { signOut } from '../../redux/actions/loginActions';
+import {
+  signOut,
+  setDestination,
+  setCheckIn,
+  setCheckOut,
+  setAdults,
+  setChildren,
+  setRooms,
+  getAvailableHotels,
+} from '../../redux/actions';
+import { useSelector } from 'react-redux';
 
-function Top({ setAvailable }) {
-  const [text, setText] = useState('');
+function Top() {
   const [dateRange, setDateRange] = useState([new Date(), new Date()]);
   const [startDate, endDate] = dateRange;
+
+  const query = useSelector((state) => state.query);
+
   const [filterData, setFilterData] = useState({
-    adults: 2,
-    children: 0,
-    rooms: 1,
+    adults: query.adults,
+    children: query.children.length || 0,
+    rooms: query.rooms,
   });
   const [childAge, setChildAge] = useState([]);
   const [visibleFilter, setVisibleFilter] = useState(false);
@@ -39,17 +50,22 @@ function Top({ setAvailable }) {
   const dispatch = useDispatch();
 
   const handleInput = (e) => {
-    setText(e.target.value);
+    dispatch(setDestination(e.target.value));
   };
 
+  useEffect(() => {
+    dispatch(setCheckIn(Date.parse(startDate)));
+    dispatch(setCheckOut(Date.parse(endDate)));
+  }, [dispatch, startDate, endDate]);
+
+  useEffect(() => {
+    dispatch(setAdults(filterData.adults));
+    dispatch(setChildren(filterData.children));
+    dispatch(setRooms(filterData.rooms));
+  }, [dispatch]);
+
   const handleClick = () => {
-    const url = new URL('https://fe-student-api.herokuapp.com/api/hotels');
-    url.searchParams.set('search', `${text}`);
-    fetch(`${url}`)
-      .then((resonce) => resonce.json())
-      .then((json) => {
-        setAvailable(json);
-      });
+    dispatch(getAvailableHotels());
   };
 
   const filterClick = () => {
@@ -110,7 +126,6 @@ function Top({ setAvailable }) {
                 <p>Your destination or hotel name</p>
                 <input
                   id='search'
-                  value={text}
                   onChange={handleInput}
                   placeholder='New York'
                 />
@@ -177,7 +192,3 @@ function Top({ setAvailable }) {
 }
 
 export default Top;
-
-Top.propTypes = {
-  setAvailable: PropTypes.func.isRequired,
-};

@@ -8,7 +8,7 @@ import Routes from './components/Routes';
 
 const App = () => {
   let navigate = useNavigate();
-  const login = useSelector((state) => state.isLoggedIn);
+  const login = useSelector(({ login }) => login.isLoggedIn);
 
   useEffect(() => {
     login ? navigate('/') : navigate('/login');

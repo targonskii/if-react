@@ -25,14 +25,13 @@ const LoginPage = () => {
     []
   );
 
-  const handleSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (loginState.email && loginState.password) {
       dispatch(login(loginState));
       dispatch(signIn(true));
-    },
-    [dispatch]
-  );
+    }
+  };
 
   return (
     <div className='wrapper'>
