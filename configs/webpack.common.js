@@ -34,6 +34,19 @@ module.exports = {
         use: ['file-loader'],
       },
       {
+        test: /\.(png|jpe?g|gif)$/i,
+
+        dependency: { not: ['url'] },
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+      },
+      {
         test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
         use: [{
           loader: 'file-loader',

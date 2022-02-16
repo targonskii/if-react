@@ -13,6 +13,7 @@ import Button from '../Button';
 import Dropdown from '../Dropdown';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { topSectionStyle } from './style';
 
 import {
   signOut,
@@ -27,6 +28,8 @@ import {
 import { useSelector } from 'react-redux';
 
 function Top() {
+  const classes = topSectionStyle();
+
   const [dateRange, setDateRange] = useState([new Date(), new Date()]);
   const [startDate, endDate] = dateRange;
 
@@ -81,25 +84,25 @@ function Top() {
   }, []);
 
   return (
-    <header className='header'>
-      <div className='header__main'>
-        <div className='header__menu'>
+    <header className={classes.header}>
+      <div className={classes.header__main}>
+        <div className={classes.header__menu}>
           <Link to='/'>
             <img src={Logo} alt='logo' />
           </Link>
           <ul>
-            <li className='header__stays'>
+            <li className={classes.header__stays}>
               <a href='#stays'>Stays</a>
             </li>
-            <li className='header__attractions'>
+            <li className={classes.header__attractions}>
               <a href='#attractions'>Attractions</a>
             </li>
             <li>
-              <div className='header__night' />
+              <div className={classes.header__night} />
             </li>
             <li>
               <div
-                className='header__account'
+                className={classes.header__account}
                 onClick={() => {
                   setShowAuth((showAuth) => !showAuth);
                 }}
@@ -114,14 +117,14 @@ function Top() {
             />
           )}
         </div>
-        <div className='header__search'>
-          <p className='header__title'>
+        <div className={classes.header__search}>
+          <p className={classes.header__title}>
             Discover stays
             <br />
             to live, work or just relax
           </p>
           <form action=''>
-            <div className='header__destination'>
+            <div className={classes.header__destination}>
               <label htmlFor='search'>
                 <p>Your destination or hotel name</p>
                 <input
@@ -131,7 +134,7 @@ function Top() {
                 />
               </label>
             </div>
-            <div className='header__date'>
+            <div className={classes.header__date}>
               <p>Check-in - Check-out</p>
               <DatePicker
                 selectsRange
@@ -144,7 +147,7 @@ function Top() {
                 monthsShown={2}
               />
             </div>
-            <div className='header__people'>
+            <div className={classes.header__people}>
               <input
                 value={filterData}
                 onClick={filterClick}
@@ -162,7 +165,7 @@ function Top() {
             </div>
             <Button
               type='button'
-              className='header__button'
+              className={classes.header__button}
               text='Search'
               handleClick={handleClick}
             />
@@ -178,7 +181,7 @@ function Top() {
             />
           )}
         </div>
-        <div className='header__download'>
+        <div className={classes.header__download}>
           <a href='#google'>
             <img src={GooglePlay} alt='google-play' />
           </a>

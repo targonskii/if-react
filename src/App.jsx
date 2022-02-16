@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import './App.css';
+// import './App.css';
 
 import Routes from './components/Routes';
 

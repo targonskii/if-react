@@ -5,8 +5,11 @@ import { Link } from 'react-router-dom';
 import Button from '../Button';
 
 import { apiHotelsUrl } from '../../redux/constants/urls';
+import { homesStyle } from '../Homes/style';
 
 const CurrentHotel = () => {
+  const classes = homesStyle();
+
   const { hotelId } = useParams();
   const history = useNavigate();
 
@@ -24,11 +27,11 @@ const CurrentHotel = () => {
   }, [hotelId]);
 
   return (
-    <div className='homes__slider'>
+    <div className={classes.homes__slider}>
       <Link to='/'>
         <Button
           type='button'
-          className='available_hotel'
+          className={classes.homes__available_hotel}
           text='Go Back'
           onClick={() => history.push('/')}
         />
