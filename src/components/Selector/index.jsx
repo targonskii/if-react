@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { setChildren } from '../../redux/actions';
 
+import { topSectionStyle } from '../TopSection/style';
+
 const Selector = ({ childAge }) => {
+  const classes = topSectionStyle();
+
   const dispatch = useDispatch();
   const [child, setChild] = useState([]);
 
@@ -18,7 +22,7 @@ const Selector = ({ childAge }) => {
 
   if (childAge.length > 0) {
     return (
-      <div className='header__people_age'>
+      <div className={classes.header__people_age}>
         <label htmlFor='age'>
           What is the age of the child you’re travelling with?
           {childAge.map((i) => {

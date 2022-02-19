@@ -1,9 +1,9 @@
 import { createUseStyles } from "react-jss";
 
-export const topSectionStyle = createUseStyles({
+export const topSectionStyle = createUseStyles((theme)=>({
   header: {
     width: '100%',
-    background: 'url(./background_main.svg)',
+    background: theme.headerBackground.background,
     backgroundSize: 'cover',
   },
   header__main: {
@@ -116,7 +116,7 @@ export const topSectionStyle = createUseStyles({
       color: '#ffffff',
     },
     '& input': {
-      marginTop: '27px',
+      marginTop: '26px',
       borderLeft: 'none',
       borderRight: 'none',
     },
@@ -158,7 +158,7 @@ export const topSectionStyle = createUseStyles({
   },
   header__stays: {
     '&::after': {
-      content: '',
+      content: `''`,
       position: 'absolute',
       width: '100%',
       height: '4px',
@@ -170,7 +170,7 @@ export const topSectionStyle = createUseStyles({
   header__attractions: {
     '&:hover': {
       '&::after': {
-        content: '',
+        content: `''`,
         position: 'absolute',
         width: '100%',
         height: '4px',
@@ -549,4 +549,4 @@ export const topSectionStyle = createUseStyles({
       paddingLeft: '40px',
     },
   },
-});
+}));

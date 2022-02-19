@@ -120,7 +120,7 @@ function Filter({
           >
             -
           </button>
-          <span className='adults' name='adults'>
+          <span className={classes.adults} name='adults'>
             {adults}
           </span>
           <button
@@ -138,9 +138,9 @@ function Filter({
           </button>
         </div>
       </div>
-      <div className='header__people_children'>
+      <div className={classes.header__people_children}>
         <span>Children</span>
-        <div className='header__people_count'>
+        <div className={classes.header__people_count}>
           <button
             className={
               filterData.children <= filterDefault.children.min
@@ -154,7 +154,7 @@ function Filter({
           >
             -
           </button>
-          <span className='children'>{children}</span>
+          <span className={classes.children}>{children}</span>
           <button
             className={
               filterData.children >= filterDefault.children.max
@@ -170,9 +170,9 @@ function Filter({
           </button>
         </div>
       </div>
-      <div className='header__people_rooms'>
+      <div className={classes.header__people_rooms}>
         <span>Rooms</span>
-        <div className='header__people_count'>
+        <div className={classes.header__people_count}>
           <button
             className={
               filterData.rooms <= filterDefault.rooms.min
@@ -186,7 +186,7 @@ function Filter({
           >
             -
           </button>
-          <span className='rooms' name='rooms'>
+          <span className={classes.rooms} name='rooms'>
             {rooms}
           </span>
           <button

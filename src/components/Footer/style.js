@@ -1,11 +1,11 @@
 import { createUseStyles } from "react-jss";
 
-export const footerStyle = createUseStyles({
+export const footerStyle = createUseStyles((theme)=>({
     footer__mobile: {
       display: 'none'
     },
     footer__section: {
-      background: '#10367c',
+      background: theme.footerBackground.background,
       height: '630px',
       fontFamily: 'Roboto',
       fontStyle: 'normal',
@@ -13,7 +13,7 @@ export const footerStyle = createUseStyles({
       fontSize: '20px',
       lineHeight: '47px',
       textAlign: 'left',
-      color: '#ffffff',
+      color: theme.colors.generalWhite,
       display: 'flex',
       padding: '120px 104px',
       justifyContent: 'space-between',
@@ -79,4 +79,4 @@ export const footerStyle = createUseStyles({
         color: '#ffffff',
       },
     },
-})
+}))

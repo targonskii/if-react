@@ -1,8 +1,7 @@
 import React from 'react';
 import { footerStyle } from './style';
 
-import WhiteLogo from '../../images/logo_triphouse_white.svg';
-// import './style.css';
+import WhiteLogo from '../../../public/images/logo_triphouse_white.svg';
 
 const Footer = () => {
   const classes = footerStyle();

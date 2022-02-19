@@ -3,10 +3,10 @@ import DatePicker from 'react-datepicker';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Logo from '../../images/logo_triphouse_blue.svg';
-import SignOut from '../../images/sign_out.svg';
-import GooglePlay from '../../images/google-play.svg';
-import AppleStore from '../../images/app_store.svg';
+import Logo from '../../../public/images/logo_triphouse_blue.svg';
+import SignOut from '../../../public/images/sign_out.svg';
+import GooglePlay from '../../../public/images/google-play.svg';
+import AppleStore from '../../../public/images/app_store.svg';
 
 import Filter from '../Filter';
 import Button from '../Button';
@@ -24,6 +24,7 @@ import {
   setChildren,
   setRooms,
   getAvailableHotels,
+  setTheme,
 } from '../../redux/actions';
 import { useSelector } from 'react-redux';
 
@@ -83,6 +84,20 @@ function Top() {
     setShowAuth((showAuth) => !showAuth);
   }, []);
 
+  const theme = useSelector(({ theme }) => theme.theme);
+
+  const themeClick = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (theme === 'dark') {
+        dispatch(setTheme('light'));
+      } else {
+        dispatch(setTheme('dark'));
+      }
+    },
+    [dispatch, theme]
+  );
+
   return (
     <header className={classes.header}>
       <div className={classes.header__main}>
@@ -98,7 +113,7 @@ function Top() {
               <a href='#attractions'>Attractions</a>
             </li>
             <li>
-              <div className={classes.header__night} />
+              <div className={classes.header__night} onClick={themeClick} />
             </li>
             <li>
               <div

@@ -31,7 +31,6 @@ const CurrentHotel = () => {
       <Link to='/'>
         <Button
           type='button'
-          className={classes.homes__available_hotel}
           text='Go Back'
           onClick={() => history.push('/')}
         />

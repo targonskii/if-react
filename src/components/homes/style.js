@@ -49,19 +49,19 @@ export const homesStyle = createUseStyles({
         color: '#bfbfbf',
       },
     },
+    '& button': {
+      width: '120px',
+      // flexGrow: 1,
+      height: '45px',
+      marginTop: '45px',
+      color: '#ffffff',
+      background: '#3077c6',
+      borderRadius: '8px',
+      fontSize: '24px',
+    }
   },
   homes__slider_name: {
     color: '#3077c6 !important',
-  },
-  homes__available_hotel: {
-    width: '192px',
-    flexGrow: 1,
-    height: '64px',
-    marginTop: '45px',
-    color: '#ffffff',
-    background: '#3077c6',
-    borderRadius: '8px',
-    fontSize: '24px',
   },
   
   '@media (max-width: 859px)': {
@@ -112,14 +112,4 @@ export const homesStyle = createUseStyles({
       },
     },
   },
-  // homes__available_hotel: {
-  //   width: '192px',
-  //   flexGrow: 1,
-  //   height: '64px',
-  //   marginTop: '45px',
-  //   color: '#ffffff',
-  //   background: '#3077c6',
-  //   borderRadius: '8px',
-  //   fontSize: '24px',
-  // },
 })
