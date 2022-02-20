@@ -17,3 +17,7 @@ export const initialQueryState = {
   children: [],
   rooms: 1,
 };
+
+export const initialThemesState = {
+  theme: 'dark',
+};

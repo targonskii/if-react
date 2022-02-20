@@ -3,16 +3,17 @@ import DatePicker from 'react-datepicker';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Logo from '../../images/logo_triphouse_blue.svg';
-import SignOut from '../../images/sign_out.svg';
-import GooglePlay from '../../images/google-play.svg';
-import AppleStore from '../../images/app_store.svg';
+import Logo from '../../../public/images/logo_triphouse_blue.svg';
+import SignOut from '../../../public/images/sign_out.svg';
+import GooglePlay from '../../../public/images/google-play.svg';
+import AppleStore from '../../../public/images/app_store.svg';
 
 import Filter from '../Filter';
 import Button from '../Button';
 import Dropdown from '../Dropdown';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { topSectionStyle } from './style';
 
 import {
   signOut,
@@ -23,10 +24,13 @@ import {
   setChildren,
   setRooms,
   getAvailableHotels,
+  setTheme,
 } from '../../redux/actions';
 import { useSelector } from 'react-redux';
 
 function Top() {
+  const classes = topSectionStyle();
+
   const [dateRange, setDateRange] = useState([new Date(), new Date()]);
   const [startDate, endDate] = dateRange;
 
@@ -80,26 +84,40 @@ function Top() {
     setShowAuth((showAuth) => !showAuth);
   }, []);
 
+  const theme = useSelector(({ theme }) => theme.theme);
+
+  const themeClick = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (theme === 'dark') {
+        dispatch(setTheme('light'));
+      } else {
+        dispatch(setTheme('dark'));
+      }
+    },
+    [dispatch, theme]
+  );
+
   return (
-    <header className='header'>
-      <div className='header__main'>
-        <div className='header__menu'>
+    <header className={classes.header}>
+      <div className={classes.header__main}>
+        <div className={classes.header__menu}>
           <Link to='/'>
             <img src={Logo} alt='logo' />
           </Link>
           <ul>
-            <li className='header__stays'>
+            <li className={classes.header__stays}>
               <a href='#stays'>Stays</a>
             </li>
-            <li className='header__attractions'>
+            <li className={classes.header__attractions}>
               <a href='#attractions'>Attractions</a>
             </li>
             <li>
-              <div className='header__night' />
+              <div className={classes.header__night} onClick={themeClick} />
             </li>
             <li>
               <div
-                className='header__account'
+                className={classes.header__account}
                 onClick={() => {
                   setShowAuth((showAuth) => !showAuth);
                 }}
@@ -114,14 +132,14 @@ function Top() {
             />
           )}
         </div>
-        <div className='header__search'>
-          <p className='header__title'>
+        <div className={classes.header__search}>
+          <p className={classes.header__title}>
             Discover stays
             <br />
             to live, work or just relax
           </p>
           <form action=''>
-            <div className='header__destination'>
+            <div className={classes.header__destination}>
               <label htmlFor='search'>
                 <p>Your destination or hotel name</p>
                 <input
@@ -131,7 +149,7 @@ function Top() {
                 />
               </label>
             </div>
-            <div className='header__date'>
+            <div className={classes.header__date}>
               <p>Check-in - Check-out</p>
               <DatePicker
                 selectsRange
@@ -144,7 +162,7 @@ function Top() {
                 monthsShown={2}
               />
             </div>
-            <div className='header__people'>
+            <div className={classes.header__people}>
               <input
                 value={filterData}
                 onClick={filterClick}
@@ -162,7 +180,7 @@ function Top() {
             </div>
             <Button
               type='button'
-              className='header__button'
+              className={classes.header__button}
               text='Search'
               handleClick={handleClick}
             />
@@ -178,7 +196,7 @@ function Top() {
             />
           )}
         </div>
-        <div className='header__download'>
+        <div className={classes.header__download}>
           <a href='#google'>
             <img src={GooglePlay} alt='google-play' />
           </a>

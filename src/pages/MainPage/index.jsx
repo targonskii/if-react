@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import '../../App.css';
-
 import Top from '../../components/TopSection';
 import AvailableHotels from '../../components/AvailableHotels';
 import HomesHotels from '../../components/Homes';

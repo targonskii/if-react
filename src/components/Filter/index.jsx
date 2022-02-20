@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-import Selector from "../Selector";
+import Selector from '../Selector';
+import { topSectionStyle } from '../TopSection/style';
 
 function Filter({
   filterData,
@@ -11,6 +12,7 @@ function Filter({
   stateButtons,
   setStateButtons,
 }) {
+  const classes = topSectionStyle();
   const filterDefault = {
     adults: {
       min: 1,
@@ -101,102 +103,102 @@ function Filter({
   }, [rooms]);
 
   return (
-    <div className="header__people_filter">
-      <div className="header__people_adults">
+    <div className={classes.header__people_filter}>
+      <div className={classes.header__people_adults}>
         <span>Adults</span>
-        <div className="header__people_count">
+        <div className={classes.header__people_count}>
           <button
             className={
               filterData.adults <= filterDefault.adults.min
-                ? "header__people_disabled"
-                : ""
+                ? 'classes.header__people_disabled'
+                : ''
             }
             disabled={stateButtons.minusAdults}
             onClick={clickMinusAdults}
-            type="button"
-            value="-"
+            type='button'
+            value='-'
           >
             -
           </button>
-          <span className="adults" name="adults">
+          <span className={classes.adults} name='adults'>
             {adults}
           </span>
           <button
             className={
               filterData.adults >= filterDefault.adults.max
-                ? "header__people_disabled"
-                : ""
+                ? 'classes.header__people_disabled'
+                : ''
             }
             disabled={stateButtons.plusAdults}
             onClick={clickPlusAdults}
-            type="button"
-            value="+"
+            type='button'
+            value='+'
           >
             +
           </button>
         </div>
       </div>
-      <div className="header__people_children">
+      <div className={classes.header__people_children}>
         <span>Children</span>
-        <div className="header__people_count">
+        <div className={classes.header__people_count}>
           <button
             className={
               filterData.children <= filterDefault.children.min
-                ? "header__people_disabled"
-                : ""
+                ? classes.header__people_disabled
+                : ''
             }
             disabled={stateButtons.minusChild}
             onClick={clickMinusChild}
-            type="button"
-            value="-"
+            type='button'
+            value='-'
           >
             -
           </button>
-          <span className="children">{children}</span>
+          <span className={classes.children}>{children}</span>
           <button
             className={
               filterData.children >= filterDefault.children.max
-                ? "header__people_disabled"
-                : ""
+                ? 'header__people_disabled'
+                : ''
             }
             disabled={stateButtons.plusChild}
             onClick={clickPlusChild}
-            type="button"
-            value="+"
+            type='button'
+            value='+'
           >
             +
           </button>
         </div>
       </div>
-      <div className="header__people_rooms">
+      <div className={classes.header__people_rooms}>
         <span>Rooms</span>
-        <div className="header__people_count">
+        <div className={classes.header__people_count}>
           <button
             className={
               filterData.rooms <= filterDefault.rooms.min
-                ? "header__people_disabled"
-                : ""
+                ? 'header__people_disabled'
+                : ''
             }
             disabled={stateButtons.minusRooms}
             onClick={clickMinusRooms}
-            type="button"
-            value="-"
+            type='button'
+            value='-'
           >
             -
           </button>
-          <span className="rooms" name="rooms">
+          <span className={classes.rooms} name='rooms'>
             {rooms}
           </span>
           <button
             className={
               filterData.rooms >= filterDefault.rooms.max
-                ? "header__people_disabled"
-                : ""
+                ? 'header__people_disabled'
+                : ''
             }
             disabled={stateButtons.plusRooms}
             onClick={clickPlusRooms}
-            type="button"
-            value="+"
+            type='button'
+            value='+'
           >
             +
           </button>
